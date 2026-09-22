@@ -10,7 +10,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const PORT = 3000;
+const PORT = Number(process.env.PORT) || 3000;
 const API_KEY = process.env.TWOFACTOR_API_KEY;
 console.log("2Factor API key loaded:", !!API_KEY);
 
@@ -97,6 +97,6 @@ app.post("/verify-otp", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on port ${PORT}`);
 });
